@@ -11,5 +11,5 @@ Example:
 
 Features:
 - Multiple HTTP verbs/methods
-- Multiple ways mentioned in #bugbountytips
+- Multiple methods mentioned in #bugbountytips
 - Multiple headers: Referer, X-Custom-IP-Authorization...
