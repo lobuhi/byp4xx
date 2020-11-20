@@ -10,6 +10,6 @@ Example:
 ./byp4xx.sh https://www.google.es /test
 
 Features:
-- Try multiple HTTP verbs/methods
-- Try multiple ways mentioned in #bugbountytips
-- Try multiple headers: Referer, X-Custom-IP-Authorization...
+- Multiple HTTP verbs/methods
+- Multiple ways mentioned in #bugbountytips
+- Multiple headers: Referer, X-Custom-IP-Authorization...
