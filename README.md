@@ -8,3 +8,8 @@ Use http or https. Start your path with /
 
 Example:
 ./byp4xx.sh https://www.google.es /test
+
+Features:
+- Try multiple HTTP verbs/methods
+- Try multiple ways mentioned in #bugbountytips
+- Try multiple headers: Referer, X-Custom-IP-Authorization...
