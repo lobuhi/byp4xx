@@ -23,4 +23,4 @@ Use http or https. Start your path with /
 - You can add proxychains to use with BurpSuite
 - Interlace it's a good option for multithread multiple paths
 
-![alt text](screenshot.png)
+
