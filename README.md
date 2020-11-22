@@ -2,8 +2,11 @@
 Simple bash script to bypass "403 Forbidden" messages with well-known methods discussed in #bugbountytips
 
 **Installation:**
+
 git clone https://github.com/lobuhi/byp4xx.git
+
 cd byp4xx
+
 chmod u+x byp4xx.sh
 
 **Usage:**
