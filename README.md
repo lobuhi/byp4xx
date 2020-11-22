@@ -22,7 +22,7 @@ chmod u+x byp4xx.sh
 
 **Tips:**
 - You can add proxychains to use with BurpSuite
-- Interlace it's a good option for multithread multiple paths
+- Interlace is a good option for multithreading multiples URLs
 
 
 ![alt text](screen.png)
