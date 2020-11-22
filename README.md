@@ -24,4 +24,4 @@ Use http or https. Start your path with /
 - Interlace it's a good option for multithread multiple paths
 
 
-![alt text](screenshot.png)
+![alt text](screen.png)
