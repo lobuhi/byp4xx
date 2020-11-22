@@ -9,10 +9,8 @@ cd byp4xx
 
 chmod u+x byp4xx.sh
 
-**Usage:**
+**Usage:** Start URL with http or https.
 ./byp4xx.sh http(s)://url/path
-
-Use http or https. Start your path with /
 
 **Example:**
 ./byp4xx.sh https://www.google.es/test
