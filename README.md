@@ -29,4 +29,4 @@ chmod u+x byp4xx.sh
 - Interlace is a good option for multithreading multiples URLs
 
 
-![alt text](screen_colors.png)
+![alt text](screenshot.png)
