@@ -12,7 +12,7 @@ chmod u+x byp4xx.sh
 
 **Usage:** Start URL with http or https.
 ```
-./byp4xx.sh http(s)://url/path
+./byp4xx.sh http(s)://url/path [OPTIONS]
 ```
 **Example:**
 ```
@@ -26,6 +26,7 @@ chmod u+x byp4xx.sh
 
 **Tips:**
 
+- Adding a -c flag will output the curl command used for successful requests
 - You can add proxychains to use with BurpSuite
 - Interlace is a good option for multithreading multiples URLs
 
