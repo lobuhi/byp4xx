@@ -50,7 +50,7 @@ echo -n "POST request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Content-Length:0" -X POST $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -H "Content-Length:0" -X POST $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -H \"Content-Length:0\" -X POST $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS\e[0m$CURL"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -62,7 +62,7 @@ echo -n "HEAD request: "
 STATUS=$(curl -k -s -o /dev/null -m 1.0 -w "%{http_code}" -X HEAD $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -X HEAD $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -m 1.0 -X HEAD $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS\e[0m$CURL"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -173,7 +173,7 @@ echo -n "/. payload: "
 STATUS=$(curl -k -s -o /dev/null --path-as-is -w "%{http_code}" -X GET "$URL$DIR/.")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -X GET "$URL$DIR/.""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k --path-as-is -X GET "$URL$DIR/.""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS\e[0m$CURL"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -225,7 +225,7 @@ echo -n "/./ payload: "
 STATUS=$(curl -k -s -o /dev/null --path-as-is -w "%{http_code}" -X GET $URL./$DIR/./)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -X GET $URL./$DIR/./"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k --path-as-is -X GET $URL./$DIR/./"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS\e[0m$CURL"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -250,7 +250,7 @@ echo -n "/.randomstring payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET "$URL$DIR/".randomstring)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -X GET "$URL$DIR/".randomstring"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" : curl -k -X GET \"$URL$DIR/\".randomstring"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS\e[0m$CURL"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
