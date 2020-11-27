@@ -157,7 +157,7 @@ echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
 echo
 #Bugbountytips methods compilation
-echo -e "\e[1m\e[32m[+] #Bugbountytips 403 bypass methods...\e[0m"
+echo -e "\e[1m\e[32m[+]#Bugbountytips 403 bypass methods...\e[0m"
 echo -n "%2e payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL%2e/$DIR)
 if [[ ${STATUS} =~ 2.. ]]
