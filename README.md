@@ -1,5 +1,12 @@
-# byp4xx.sh
-Simple bash script to bypass "403 Forbidden" messages with well-known methods discussed in #bugbountytips
+```
+    __                __ __           
+   / /_  __  ______  / // / _  ___  __
+  / __ \/ / / / __ \/ // /_| |/_/ |/_/
+ / /_/ / /_/ / /_/ /__  __/>  <_>  <  
+/_.___/\__, / .___/  /_/ /_/|_/_/|_|  
+      /____/_/                        
+```
+A bash script to bypass "403 Forbidden" responses with well-known methods discussed in #bugbountytips
 
 **Installation:**
 ```
