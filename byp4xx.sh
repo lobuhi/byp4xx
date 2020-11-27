@@ -14,7 +14,7 @@ if [ "$#" -lt 1 ] || [ "$#" -gt 3 ]
 then
 	echo "Usage: ./byp4xx.sh [OPTIONS] http://url/path/"
 	echo "OPTIONS:"
-	echo "	-c Return curl $REDIRECT command if response is 200"
+	echo "	-c Return curl command if response is 200"
 	echo "	-r Allow redirection if response is 3XX"
 	exit
 fi
