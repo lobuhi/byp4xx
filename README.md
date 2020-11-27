@@ -33,4 +33,3 @@ chmod u+x byp4xx.sh
 
 ![alt text](screenshot.png)
 
-**[Buy me a coffee... or a pizza! Stay cool! ^_^](https://buymeacoffee.com/lobuhi)**
