@@ -40,7 +40,7 @@ echo -n "GET request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -52,7 +52,7 @@ echo -n "POST request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Content-Length:0" -X POST $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"Content-Length:0\" -X POST $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"Content-Length:0\" -X POST $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -64,7 +64,7 @@ echo -n "HEAD request: "
 STATUS=$(curl -k -s -o /dev/null -m 1.0 -w "%{http_code}" -X HEAD $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -m 1.0 -X HEAD $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -m 1.0 -X HEAD $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -77,7 +77,7 @@ echo -n "OPTIONS request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X OPTIONS $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X OPTIONS $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X OPTIONS $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -90,7 +90,7 @@ echo -n "PUT request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X PUT $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X PUT $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X PUT $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -107,7 +107,7 @@ echo -n "TRACE request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACE $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X TRACE $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X TRACE $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -120,7 +120,7 @@ echo -n "TRACK request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X TRACK $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X TRACK $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X TRACK $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -133,7 +133,7 @@ echo -n "CONNECT request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X CONNECT $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X CONNECT $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X CONNECT $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -146,7 +146,7 @@ echo -n "PATCH request: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X PATCH $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X PATCH $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X PATCH $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -162,7 +162,7 @@ echo -n "%2e payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL%2e/$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL%2e/$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL%2e/$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -176,7 +176,7 @@ echo -n "/. payload: "
 STATUS=$(curl -k -s -o /dev/null --path-as-is -w "%{http_code}" -X GET "$URL$DIR/.")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k --path-as-is -X GET "URL$DIR/.""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki --path-as-is -X GET "URL$DIR/.""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -190,7 +190,7 @@ echo -n "? payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL$DIR?)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL$DIR?"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL$DIR?"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -204,7 +204,7 @@ echo -n "?? payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL$DIR??)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL$DIR??"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL$DIR??"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -217,7 +217,7 @@ echo -n "// payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL/$DIR//)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL/$DIR//"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL/$DIR//"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -230,7 +230,7 @@ echo -n "/./ payload: "
 STATUS=$(curl -k -s -o /dev/null --path-as-is -w "%{http_code}" -X GET $URL./$DIR/./)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k --path-as-is -X GET $URL./$DIR/./"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki --path-as-is -X GET $URL./$DIR/./"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -243,7 +243,7 @@ echo -n "/ payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET $URL$DIR/)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET $URL$DIR/"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET $URL$DIR/"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -255,7 +255,7 @@ echo -n "/.randomstring payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET "$URL$DIR/".randomstring)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET \"$URL$DIR/\".randomstring"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET \"$URL$DIR/\".randomstring"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -267,7 +267,7 @@ echo -n "..;/ payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -X GET "$URL$DIR..;/")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -X GET \"$URL$DIR..;/\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -X GET \"$URL$DIR..;/\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -282,7 +282,7 @@ echo -n "Referer payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Referer: $URL$DIR" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"Referer: $URL$DIR\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"Referer: $URL$DIR\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -294,7 +294,7 @@ echo -n "X-Custom-IP-Authorization payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Custom-IP-Authorization: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Custom-IP-Authorization: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Custom-IP-Authorization: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -306,7 +306,7 @@ echo -n "X-Custom-IP-Authorization+..;/ payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Custom-IP-Authorization: 127.0.0.1" -X GET "$URL$DIR..;/")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Custom-IP-Authorization: 127.0.0.1\" -X GET \"$URL$DIR..;/\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Custom-IP-Authorization: 127.0.0.1\" -X GET \"$URL$DIR..;/\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -318,7 +318,7 @@ echo -n "X-Original-URL payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Original-URL: /$DIR" -X GET $URL"anything")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Original-URL: /$DIR\" -X GET $URL\"anything\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Original-URL: /$DIR\" -X GET $URL\"anything\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -330,7 +330,7 @@ echo -n "X-Rewrite-URL payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Rewrite-URL: /$DIR" -X GET "$URL")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Rewrite-URL: /$DIR\" -X GET \"$URL\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Rewrite-URL: /$DIR\" -X GET \"$URL\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -342,7 +342,7 @@ echo -n "X-Originating-IP payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Originating-IP: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Originating-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Originating-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -354,7 +354,7 @@ echo -n "X-Forwarded-For payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-For: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Forwarded-For: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Forwarded-For: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -366,7 +366,7 @@ echo -n "X-Remote-IP payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Remote-IP: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Remote-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Remote-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -378,7 +378,7 @@ echo -n "X-Client-IP payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Client-IP: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Client-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Client-IP: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -390,7 +390,7 @@ echo -n "X-Host payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Host: 127.0.0.1" -X GET "$URL$DIR")
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
@@ -400,7 +400,7 @@ echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
 echo -n "X-Forwared-Host payload: "
 STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" -H "X-Forwared-Host: 127.0.0.1" -X GET "$URL$DIR")
-if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -k -H \"X-Forwared-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl -ki -H \"X-Forwared-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 if [[ ${STATUS} =~ 2.. ]]
 then
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
