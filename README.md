@@ -4,9 +4,7 @@ Simple bash script to bypass "403 Forbidden" messages with well-known methods di
 **Installation:**
 ```
 git clone https://github.com/lobuhi/byp4xx.git
-
 cd byp4xx
-
 chmod u+x byp4xx.sh
 ```
 
@@ -23,14 +21,13 @@ OPTIONS:
 ./byp4xx.sh https://www.google.es/test
 ```
 **Features:**
-
 - Multiple HTTP verbs/methods
 - Multiple methods mentioned in #bugbountytips
 - Multiple headers: Referer, X-Custom-IP-Authorization...
+- Allow redirects
+- Return the entire curl command if response is 200
 
 **Tips:**
-
-- Adding a -c flag will output the curl command used for successful requests (code 200)
 - You can add proxychains to use with BurpSuite
 - Interlace is a good option for multithreading multiples URLs
 
