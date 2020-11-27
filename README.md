@@ -12,7 +12,7 @@ chmod u+x byp4xx.sh
 
 **Usage:** Start URL with http or https.
 ```
-./byp4xx.sh http(s)://url/path [OPTIONS]
+./byp4xx.sh [OPTIONS] http(s)://url/path
 
 OPTIONS:
   -c Return the entire curl command if response is 200
