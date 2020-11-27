@@ -15,7 +15,8 @@ chmod u+x byp4xx.sh
 ./byp4xx.sh http(s)://url/path [OPTIONS]
 
 OPTIONS:
--c Return the entire curl command if response is 200
+  -c Return the entire curl command if response is 200
+  -r Redirects if the response is 3XX
 ```
 **Example:**
 ```
