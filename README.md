@@ -38,5 +38,4 @@ OPTIONS:
 **Tips:**
 - You can add proxychains to use with BurpSuite
 - Interlace is a good option for multithreading multiples URLs
-
-**[Buy me a coffee... or a pizza! Stay cool! ^_^](https://buymeacoffee.com/lobuhi)**
+- BONUS: **[Buy me a coffee... or a pizza! Stay cool! ^_^](https://buymeacoffee.com/lobuhi)**
