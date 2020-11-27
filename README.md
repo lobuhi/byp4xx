@@ -26,9 +26,11 @@ chmod u+x byp4xx.sh
 
 **Tips:**
 
-- Adding a -c flag will output the curl command used for successful requests
+- Adding a -c flag will output the curl command used for successful requests (code 200)
 - You can add proxychains to use with BurpSuite
 - Interlace is a good option for multithreading multiples URLs
 
 
 ![alt text](screenshot.png)
+
+**[Buy me a coffee... or a pizza! Stay cool! ^_^](https://buymeacoffee.com/lobuhi)**
