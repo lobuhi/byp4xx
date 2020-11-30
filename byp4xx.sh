@@ -440,7 +440,7 @@ echo -e "\e[1m\e[32m[+]MISCELANEOUS...\e[0m"
 #Showcased on OWASP Juice shop: https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html#access-a-developers-forgotten-backup-file
 echo -n "Null Byte Poisoning: "
 
-for $EXTENSION in $commonlyAllowedExtensions
+for EXTENSION in $commonlyAllowedExtensions
 do
 	STATUS=$(curl $URL$DIR%2500.$EXTENSION)
 	if [[ ${STATUS} =~ 2.. ]]
