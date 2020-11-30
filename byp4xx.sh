@@ -439,6 +439,7 @@ echo -e "\e[1m\e[32m[+]MISCELANEOUS...\e[0m"
 #https://web.archive.org/web/20170617080614/hakipedia.com/index.php/Poison_Null_Byte
 #Showcased on OWASP Juice shop: https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html#access-a-developers-forgotten-backup-file
 echo -n "--Null Byte Poisoning--"
+echo
 
 for EXTENSION in "${commonlyAllowedExtensions[@]}"
 do
