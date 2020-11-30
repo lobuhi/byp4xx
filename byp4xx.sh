@@ -442,10 +442,10 @@ echo -n "Null Byte Poisoning: "
 
 for EXTENSION in $commonlyAllowedExtensions
 do
-	STATUS=$(curl $URL$DIR%2500.$EXTENSION)
+	STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -X GET "$URL$DIR%2500.$EXTENSION")
 	if [[ ${STATUS} =~ 2.. ]]
 	then
-		if [ "$OUTPUTCURL" = "Y" ]; then CURL="curl $URL$DIR%2500.$EXTENSION"; else CURL=""; fi
+		if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -X GET \"$URL$DIR%2500.$EXTENSION\""; else CURL=""; fi
 		echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 	elif [[ ${STATUS} =~ 3.. ]]
 	then 
