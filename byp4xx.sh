@@ -438,19 +438,24 @@ echo -e "\e[1m\e[32m[+]MISCELANEOUS...\e[0m"
 #http://www.codercaste.com/2009/10/03/the-null-byte-poisoning-attack-explained/
 #https://web.archive.org/web/20170617080614/hakipedia.com/index.php/Poison_Null_Byte
 #Showcased on OWASP Juice shop: https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html#access-a-developers-forgotten-backup-file
-echo -n "Null Byte Poisoning: "
+echo -n "--Null Byte Poisoning--"
 
-for EXTENSION in $commonlyAllowedExtensions
+for EXTENSION in "${commonlyAllowedExtensions[@]}"
 do
 	STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -X GET "$URL$DIR%2500.$EXTENSION")
 	if [[ ${STATUS} =~ 2.. ]]
 	then
-		if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -X GET \"$URL$DIR%2500.$EXTENSION\""; else CURL=""; fi
-		echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
+		if [ "$OUTPUTCURL" = "Y" ]; 
+		then 
+			CURL=" => curl $REDIRECT -ki -X GET \"$URL$DIR%2500.$EXTENSION\""; 
+		else 
+			CURL=""; 
+		fi
+		echo -e "NBP .$EXTENSION: \e[1m\e[32m$STATUS$CURL\e[0m"
 	elif [[ ${STATUS} =~ 3.. ]]
 	then 
-		echo -e "\e[1m\e[33m$STATUS\e[0m"
+		echo -e "NBP .$EXTENSION: \e[1m\e[33m$STATUS\e[0m"
 	else
-	echo -e "\e[1m\e[31m$STATUS\e[0m"
+	echo -e "NBP .$EXTENSION: \e[1m\e[31m$STATUS\e[0m"
 	fi
 done
