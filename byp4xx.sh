@@ -408,9 +408,9 @@ then
 else
 echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
-echo -n "X-Forwared-Host payload: "
-STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwared-Host: 127.0.0.1" -X GET "$URL$DIR")
-if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwared-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
+echo -n "X-Forwarded-Host payload: "
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -w "%{http_code}" -H "X-Forwarded-Host: 127.0.0.1" -X GET "$URL$DIR")
+if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -H \"X-Forwarded-Host: 127.0.0.1\" -X GET \"$URL$DIR\""; else CURL=""; fi
 if [[ ${STATUS} =~ 2.. ]]
 then
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
