@@ -71,10 +71,10 @@ else
 echo -e "\e[1m\e[31m$STATUS\e[0m"
 fi
 echo -n "HEAD request: "
-STATUS=$(curl $REDIRECT -k -s -o /dev/null -m 1.0 -w "%{http_code}" -X HEAD $URL$DIR)
+STATUS=$(curl $REDIRECT -k -s -o /dev/null -m 1 -w "%{http_code}" -X HEAD $URL$DIR)
 if [[ ${STATUS} =~ 2.. ]]
 then
-	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -m 1.0 -X HEAD $URL$DIR"; else CURL=""; fi
+	if [ "$OUTPUTCURL" = "Y" ]; then CURL=" => curl $REDIRECT -ki -m 1 -X HEAD $URL$DIR"; else CURL=""; fi
 	echo -e "\e[1m\e[32m$STATUS$CURL\e[0m"
 elif [[ ${STATUS} =~ 3.. ]]
 then 
