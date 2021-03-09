@@ -41,7 +41,7 @@ then
 fi
 #Parse URL and DIR
 URL=$(echo ${@: -1} | cut -d "/" -f -3)"/"
-DIR=$(echo ${@: -1} | cut -d "/" -f 4- | sed -e 's/\/$//g')
+DIR=$(echo ${@: -1} | cut -d "/" -f 4- | sed -e 's/\/$//g')"/"
 echo
 
 #HTTP Verbs/Methods
