@@ -28,7 +28,7 @@ Some cURL options you may use as example:
   -x <ip>:<port> to set a proxy
   -m <seconds> to set a timeout
   -H for new headers
-  -d for data in body POST requests
+  -d for data in the POST requests body
   -...
 ```
 **Example:**
