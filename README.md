@@ -1,4 +1,4 @@
-***byp4xx.sh***
+***byp4xx.py***
 ```
     __                __ __           
    / /_  __  ______  / // / _  ___  __
@@ -7,33 +7,38 @@
 /_.___/\__, / .___/  /_/ /_/|_/_/|_|  
       /____/_/                        
 ```
-A bash script to bypass "403 Forbidden" responses with well-known methods discussed in #bugbountytips
+Python script for 40X responses bypass. Methods from #bugbountytips, headers, verb tampering and user agents.
 
 **Installation:**
 ```
 git clone https://github.com/lobuhi/byp4xx.git
 cd byp4xx
-chmod u+x byp4xx.sh
+chmod u+x byp4xx.py
+python3 byp4xx.py
 ```
 
 **Usage:** Start URL with http or https.
 ```
-./byp4xx.sh [OPTIONS] http(s)://url/path
+python3 byp4xx.py <cURL options> <target>
 
-OPTIONS:
-  -c Return the entire curl command if response is 200
-  -r Redirects if the response is 3XX
+Some cURL options you may use as example:
+  -L follow redirections (30X responses)
+  -x <ip>:<port> to set a proxy
+  -m <seconds> to set a timeout
+  -H for new headers
+  -d for data in body POST requests
+  -...
 ```
 **Example:**
 ```
-./byp4xx.sh https://www.google.es/test
+python3 byp4xx.py https://www.google.es/test
 ```
 **Features:**
 - Multiple HTTP verbs/methods
 - Multiple methods mentioned in #bugbountytips
 - Multiple headers: Referer, X-Custom-IP-Authorization...
-- Allow redirects
-- Return the entire curl command if response is 200
+- Accepts any cURL option
+- New module, test for 2454 UserAgents from SecList
 
 **Tips:**
 - You can add proxychains to use with BurpSuite
