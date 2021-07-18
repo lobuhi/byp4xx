@@ -14,6 +14,8 @@ Python script for 40X responses bypass. Methods from #bugbountytips, headers, ve
 git clone https://github.com/lobuhi/byp4xx.git
 cd byp4xx
 chmod u+x byp4xx.py
+./byp4xx.py
+or
 python3 byp4xx.py
 ```
 
