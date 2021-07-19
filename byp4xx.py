@@ -141,12 +141,11 @@ print("Ends with ..;: ",curlCodeResponse(options+" -X GET --path-as-is",payload)
 print("")
 ###########UserAgents
 payload=url+"/"+uri
-response=input("Do you want to try with UserAgents.fuzz.txt from SecList? (2454 requests) [Y/n]")
-if response == 'Y' or response == 'y' or response == "":
+response=input("Do you want to try with UserAgents.fuzz.txt from SecList? (2454 requests) [y/N]")
+if response == 'N' or response == 'n' or response == "":
+	sys.exit(1)
+else:
 	print('\033[92m\033[1m[+]UserAgents\033[0m')
-	count=0
 	with open("UserAgents.fuzz.txt") as file:  
 		for line in file:
 			print(line.strip()+":"+curlCodeResponse(options+" -X GET -H \"User-Agent: "+line.strip()+"\"",payload))
-else:
-	sys.exit(1)
