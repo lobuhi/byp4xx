@@ -24,7 +24,7 @@ def curl_code_response(options_var, payload_var):
 	else:
 		code = code.split('\n',1)[0]
   
-  try:
+  	try:
 		status = code.split(" ")[1] # Status code is in second position
 	except:
 		print("\033[91m Status not found \033[0m")
