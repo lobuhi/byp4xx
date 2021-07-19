@@ -136,6 +136,10 @@ payload=url+"/"+uri+"/"
 print("Ends with /: ",curlCodeResponse(options+" -X GET",payload))
 payload=url+"/"+uri+"/.randomstring"
 print("Ends with .randomstring: ",curlCodeResponse(options+" -X GET",payload))
+payload=url+"/.\;/"+uri
+print("Between /.;/: ",curlCodeResponse(options+" -X GET --path-as-is",payload))
+payload=url+"\;foo=bar/"+uri
+print("Between ;foo=bar;/: ",curlCodeResponse(options+" -X GET --path-as-is",payload))
 payload=url+"/"+uri+"..\;/"
 print("Ends with ..;: ",curlCodeResponse(options+" -X GET --path-as-is",payload))
 print("")
