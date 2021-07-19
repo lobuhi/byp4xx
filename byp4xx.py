@@ -17,17 +17,19 @@ def banner():
 #Code is returned already colored
 def curl_code_response(options_var, payload_var):
 	code = popen("curl -k -s -I %s %s" % (options_var, payload_var)).read()
-	try:
-		status = code.split(" ")[1] # Status code is in second position
-	except:
-		print("\033[91m Status not found \033[0m")
-		return # consider using sys.exit(1)
-	#If we use -x proxy curl option then we must take the third line of the response
+	
+  #If we use -x proxy curl option then we must take the third line of the response
 	if "-x" in options_var:
 		code = code.split('\n',3)[2]
 	else:
 		code = code.split('\n',1)[0]
-
+  
+  try:
+		status = code.split(" ")[1] # Status code is in second position
+	except:
+		print("\033[91m Status not found \033[0m")
+		return # consider using sys.exit(1)
+	
 	#200=GREEN
 	if status == "200":
 		code = "\033[92m"+code+"\033[0m"
@@ -151,13 +153,3 @@ def main():
 		with open("UserAgents.fuzz.txt") as file:  
 			for line in file:
 				print(line.strip()+":"+curl_code_response(options+" -X GET -H \"User-Agent: "+line.strip()+"\"",payload))
-
-
-if __name__ == "__main__":
-	try:
-		banner()
-		main()
-	except KeyboardInterrupt:
-		print("Aborting...")
-	except Exception as e:
-		print(e)
