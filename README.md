@@ -7,7 +7,7 @@
 /_.___/\__, / .___/  /_/ /_/|_/_/|_|  
       /____/_/                        
 ```
-Python script for 40X responses bypass. Methods from #bugbountytips, headers, verb tampering and user agents.
+Python script for 40X responses bypassing. Methods from #bugbountytips, headers, verb tampering and user agents.
 
 **Installation:**
 ```
