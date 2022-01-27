@@ -21,19 +21,37 @@ python3 byp4xx.py
 
 **Usage:** Start URL with http or https.
 ```
-python3 byp4xx.py <cURL options> <target>
+usage: byp4xx.py [-h] --target TARGET [--curl-options CURL_OPTIONS] [--bypass-ip BYPASS_IP]
+                 [--fuzz-user-agents | --skip-fuzz-user-agents]
 
+optional arguments:
+  -h, --help            show this help message and exit
+  --curl-options CURL_OPTIONS
+                        Any additional options to pass to curl
+  --bypass-ip BYPASS_IP
+                        Try bypass tests with a specific IP address (or hostname). i.e.:
+                        "X-Forwarded-For: 192.168.0.1" instead of "X-Forwarded-For: 127.0.0.1"
+  --fuzz-user-agents    Skip question and fuzz user agents with UserAgents.fuzz.txt from SecList or
+                        not.
+  --skip-fuzz-user-agents
+                        Skip question and not fuzz User-Agent header.
+
+required named arguments:
+  --target TARGET       The url target of the tests
+```
+
+```
 Some cURL options you may use as example:
   -L follow redirections (30X responses)
   -x <ip>:<port> to set a proxy
   -m <seconds> to set a timeout
-  -H for new headers
+  -H for new headers (-H "Cookie: test=value;")
   -d for data in the POST requests body
   -...
 ```
 **Example:**
 ```
-python3 byp4xx.py https://www.google.es/test
+python3 byp4xx.py --target https://www.google.es/test
 ```
 **Features:**
 - Multiple HTTP verbs/methods

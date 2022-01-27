@@ -42,18 +42,29 @@ def curl_code_response(options_var, payload_var):
 	return code
 
 def main():
-	#Check all params
-	if len(sys.argv)<2:
-		print("Usage: ./byp4xx <cURL options> <target>")
-		sys.exit(1)
+	import argparse
+	parser = argparse.ArgumentParser()
+	# Mandatory arguments as suggested here: https://stackoverflow.com/a/24181138
+	requiredNamed = parser.add_argument_group('required named arguments')
+	requiredNamed.add_argument('--target', help="The url target of the tests", required=True)
+	parser.add_argument("--curl-options", help="Any additional options to pass to curl")
+	parser.add_argument('--bypass-ip',
+		help='Try bypass tests with a specific IP address (or hostname). i.e.: "X-Forwarded-For: 192.168.0.1" instead of "X-Forwarded-For: 127.0.0.1"')
+	# Another "pythonic" way of parsing args for enabling/disabling: https://stackoverflow.com/a/30500877
+	user_agents_parser = parser.add_mutually_exclusive_group(required=False)
+	user_agents_parser.add_argument('--fuzz-user-agents', dest='fuzz_user_agents', action='store_true',
+		help='Skip question and fuzz user agents with UserAgents.fuzz.txt from SecList or not.')
+	user_agents_parser.add_argument('--skip-fuzz-user-agents', dest='fuzz_user_agents', action='store_false',
+		help='Skip question and not fuzz User-Agent header.')
+	user_agents_parser.set_defaults(fuzz_user_agents=None)
+	args = parser.parse_args()
 
 	#Parse curl options and target from args
-	options = ' '.join(sys.argv[1:len(sys.argv)-1])
-	target = sys.argv[len(sys.argv)-1]
+	options = args.curl_options
+	target = args.target
 
 	#Check if URL starts with http/https
 	if not target.startswith("http"):
-		print("Usage: ./byp4xx <cURL options> <target>")	
 		print("URL parameter does not start with http:// or https://")
 		sys.exit(1)
 
@@ -108,20 +119,26 @@ def main():
 	###########HEADERS
 	print('\033[92m\033[1m[+]HEADERS\033[0m')
 	print("Referer: ",curl_code_response(options+" -X GET -H \"Referer: "+payload+"\"",payload))
-	print("X-Custom-IP-Authorization: ",curl_code_response(options+" -X GET -H \"X-Custom-IP-Authorization: 127.0.0.1\"",payload))
-	payload=url+"/"+uri+"..\;"
-	print("X-Custom-IP-Authorization + ..;: ",curl_code_response(options+" -X GET -H \"X-Custom-IP-Authorization: 127.0.0.1\"",payload))
 	payload=url+"/"
 	print("X-Original-URL: ",curl_code_response(options+" -X GET -H \"X-Original-URL: /"+uri+"\"",payload))
 	print("X-Rewrite-URL: ",curl_code_response(options+" -X GET -H \"X-Rewrite-URL: /"+uri+"\"",payload))
-	payload=url+"/"+uri
-	print("X-Originating-IP: ",curl_code_response(options+" -X GET -H \"X-Originating-IP: 127.0.0.1\"",payload))
-	print("X-Forwarded-For: ",curl_code_response(options+" -X GET -H \"X-Forwarded-For: 127.0.0.1\"",payload))
-	print("X-Remote-IP: ",curl_code_response(options+" -X GET -H \"X-Remote-IP: 127.0.0.1\"",payload))
-	print("X-Client-IP: ",curl_code_response(options+" -X GET -H \"X-Client-IP: 127.0.0.1\"",payload))
-	print("X-Host: ",curl_code_response(options+" -X GET -H \"X-Host: 127.0.0.1\"",payload))
-	print("X-Forwarded-Host: ",curl_code_response(options+" -X GET -H \"X-Forwarded-Host: 127.0.0.1\"",payload))
-	print("")
+	# Now iterate over all the tests that use a specific IP to bypass
+	bypass_ips = ['127.0.0.1']
+	if args.bypass_ip:
+		bypass_ips.append(args.bypass_ip)
+	for bypass_ip in bypass_ips:
+		print('\033[92m\033[1m[.]Headers checks with IP {}\033[0m'.format(bypass_ip))
+		print("X-Custom-IP-Authorization: ",curl_code_response(options+" -X GET -H \"X-Custom-IP-Authorization: {}\"".format(bypass_ip),payload))
+		payload=url+"/"+uri+"..\;"
+		print("X-Custom-IP-Authorization + ..;: ",curl_code_response(options+" -X GET -H \"X-Custom-IP-Authorization: {}\"".format(bypass_ip),payload))
+		payload=url+"/"+uri
+		print("X-Originating-IP: ",curl_code_response(options+" -X GET -H \"X-Originating-IP: {}\"".format(bypass_ip),payload))
+		print("X-Forwarded-For: ",curl_code_response(options+" -X GET -H \"X-Forwarded-For: {}\"".format(bypass_ip),payload))
+		print("X-Remote-IP: ",curl_code_response(options+" -X GET -H \"X-Remote-IP: {}\"".format(bypass_ip),payload))
+		print("X-Client-IP: ",curl_code_response(options+" -X GET -H \"X-Client-IP: {}\"".format(bypass_ip),payload))
+		print("X-Host: ",curl_code_response(options+" -X GET -H \"X-Host: {}\"".format(bypass_ip),payload))
+		print("X-Forwarded-Host: ",curl_code_response(options+" -X GET -H \"X-Forwarded-Host: {}\"".format(bypass_ip),payload))
+		print("")
 	###########BUGBOUNTY
 	print('\033[92m\033[1m[+]#BUGBOUNTYTIPS\033[0m')
 	payload=url+"/%2e/"+uri
@@ -149,14 +166,26 @@ def main():
 	print("")
 	###########UserAgents
 	payload=url+"/"+uri
-	response=input("Do you want to try with UserAgents.fuzz.txt from SecList? (2454 requests) [y/N]: ")
-	if response.lower() == 'n' or response == "":
-		sys.exit(1)
-	else:
-		print('\033[92m\033[1m[+]UserAgents\033[0m')
-		with open("UserAgents.fuzz.txt") as file:  
-			for line in file:
-				print(line.strip()+":"+curl_code_response(options+" -X GET -H \"User-Agent: "+line.strip()+"\"",payload))
+	if args.fuzz_user_agents == None:
+		# Ask user
+		response=input("Do you want to try with UserAgents.fuzz.txt from SecList? (2454 requests) [y/N]: ")
+		if response.lower() == 'n' or response == "":
+			sys.exit(1)
+		else:
+			fuzz_user_agents(payload, options)
+	elif args.fuzz_user_agents == True:
+		# Run user-agents fuzzing without asking
+		fuzz_user_agents(payload, options)
+		pass
+	elif args.fuzz_user_agents == True:
+		# Skip it
+		pass
+
+def fuzz_user_agents(payload, options):
+	print('\033[92m\033[1m[+]UserAgents\033[0m')
+	with open("UserAgents.fuzz.txt") as file:  
+		for line in file:
+			print(line.strip()+":"+curl_code_response(options+" -X GET -H \"User-Agent: "+line.strip()+"\"",payload))
 
 
 if __name__ == "__main__":
