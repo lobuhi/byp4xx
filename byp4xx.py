@@ -58,9 +58,12 @@ def main():
 		help='Skip question and not fuzz User-Agent header.')
 	user_agents_parser.set_defaults(fuzz_user_agents=None)
 	args = parser.parse_args()
+	print(args)
 
 	#Parse curl options and target from args
-	options = args.curl_options
+	options = ''
+	if args.curl_options != None:
+		options = args.curl_options
 	target = args.target
 
 	#Check if URL starts with http/https
