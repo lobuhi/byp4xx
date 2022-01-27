@@ -58,7 +58,6 @@ def main():
 		help='Skip question and not fuzz User-Agent header.')
 	user_agents_parser.set_defaults(fuzz_user_agents=None)
 	args = parser.parse_args()
-	print(args)
 
 	#Parse curl options and target from args
 	options = ''
