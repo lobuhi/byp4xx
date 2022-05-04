@@ -6,7 +6,7 @@ setup(
     packages=[""],
     url='https://github.com/lobuhi/byp4xx',
     license='',
-    author='lobuthi',
+    author='lobuhi',
     author_email='',
     description='',
     setup_requires=['setuptools_scm'],
