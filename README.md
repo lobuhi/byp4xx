@@ -11,12 +11,7 @@ Python script for 40X responses bypassing. Methods from #bugbountytips, headers,
 
 **Installation:**
 ```
-git clone https://github.com/lobuhi/byp4xx.git
-cd byp4xx
-chmod u+x byp4xx.py
-./byp4xx.py
-or
-python3 byp4xx.py
+pip install git+https://github.com/lobuhi/byp4xx.git
 ```
 
 **Usage:** Start URL with http or https.
