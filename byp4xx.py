@@ -18,7 +18,7 @@ def banner():
 
 
 def curl_code_response(options_var, payload_var):
-	code = popen("curl -k -s -I %s %s | grep HTTP | tail -1" % (options_var, payload_var)).read()
+	code = popen("curl -L -k -s -I %s %s | grep HTTP | tail -1" % (options_var, payload_var)).read()
 
 	# If we use -x proxy curl option then we must take the third line of the response
 	if "-x" in options_var:
