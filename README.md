@@ -34,6 +34,11 @@ Some cURL options you may use as example:
   -H for new headers
   -d for data in the POST requests body
   -...
+  
+ Built-in options:
+  -all Verbose mode
+  -ip <IP> Custom source IP address for headers
+  -fuzz Experimental unicode fuzzing mode. High workload! >65k requests! Watchout!
 ```
 **Example:**
 ```
@@ -44,7 +49,10 @@ python3 byp4xx.py https://www.google.es/test
 - Multiple methods mentioned in #bugbountytips
 - Multiple headers: Referer, X-Custom-IP-Authorization...
 - Accepts any cURL option
-- New module, test for 2454 UserAgents from SecList
+- Based on Seclist
+    -  UserAgents
+    -  Extensions
+    -  Default credentials
 
 **Tips:**
 - You can add proxychains to use with BurpSuite
