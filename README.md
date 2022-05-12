@@ -58,3 +58,8 @@ python3 byp4xx.py https://www.google.es/test
 - You can add proxychains to use with BurpSuite
 - Interlace is a good option for multithreading multiples URLs
 - BONUS: **[Buy me a coffee... or a pizza! Stay cool! ^_^](https://buymeacoffee.com/lobuhi)**
+
+**TO-DO:**
+- File input
+- Multithread/Multiprocessing?
+- ...
