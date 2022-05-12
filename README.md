@@ -62,4 +62,5 @@ python3 byp4xx.py https://www.google.es/test
 **TO-DO:**
 - File input
 - Multithread/Multiprocessing?
+- Random vulnerable docker to test byp4xx
 - ...
