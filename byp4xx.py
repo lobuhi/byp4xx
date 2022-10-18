@@ -30,8 +30,11 @@ def curl_code_response(options_var, payload_var):
 	else:
 		code = code.split('\n',1)[0]
 	"""
-	code = code.split('\n',1)[0]	
-	status = code.split(" ")[1] # Status code is in second position
+	try:
+		code = code.split('\n',1)[0]	
+		status = code.split(" ")[1] # Status code is in second position
+	except:
+		return "Response Error"
 		
 	#200=GREEN
 	if status == "200":
