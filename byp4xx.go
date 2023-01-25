@@ -34,9 +34,21 @@ func main() {
 	banner()
 
 	// Check if the number of arguments is less than 1
-	if len(os.Args) < 1 {
-		fmt.Println("Please provide at least an URL or a file")
-		os.Exit(1)
+	if len(os.Args) == 1 {
+		fmt.Println("byp4xx <cURL or byp4xx options> <URL or file>")
+
+		fmt.Println("Some cURL options you may use as example:")
+		fmt.Println("  -L follow redirections (30X responses)")
+		fmt.Println("  -x <ip>:<port> to set a proxy")
+		fmt.Println("  -m <seconds> to set a timeout")
+		fmt.Println("  -H for new headers. Escape double quotes.")
+		fmt.Println("  -d for data in the POST requests body")
+		fmt.Println("  -...")
+  
+		fmt.Println("Built-in options:")
+		fmt.Println("  --all Verbose mode")
+		fmt.Println("  -t or --thread Set the maximum threads")
+		os.Exit(0)
 	}
 
 	// Get the last argument as the URL
