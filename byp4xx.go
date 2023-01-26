@@ -9,6 +9,7 @@ import (
 	"strings"
 	"bufio"
 	"sync"
+	"time"
 	b64 "encoding/base64"
 )
 
@@ -17,6 +18,9 @@ var maxThreads int = 5
 var wg sync.WaitGroup
 var queue int = 0
 var verbose = false
+var rateLimit = 1
+var rateBoolean = false
+var sem = make(chan int, maxThreads)
 
 func banner() {
 	fmt.Println("\033[92m    __                 \033[91m__ __           ")
@@ -62,7 +66,23 @@ func main() {
 			if i+1 < len(options) {
 				threads, _ := strconv.Atoi(options[i+1])
 				maxThreads = threads
+				sem = make(chan int, maxThreads)
 				//Delete -t/--thread and the value from options
+				options = append(options[:i], options[i+2:]...)
+			}
+			
+		} 
+	}
+	
+	//check for rate limit
+	for i, option := range options {
+		if option == "--rate" {
+			if i+1 < len(options) {
+				rate, _ := strconv.Atoi(options[i+1])
+				rateLimit = rate
+				maxThreads = 1
+				sem = make(chan int, maxThreads)
+				rateBoolean = true
 				options = append(options[:i], options[i+2:]...)
 			}
 			
@@ -76,6 +96,7 @@ func main() {
 			options = append(options[:i], options[i+1:]...)
 		}
 	}
+	
 
 	// Check if the URL is valid
 	match, _ := regexp.MatchString("^https?://", url)
@@ -136,6 +157,11 @@ func curl_code_response(message string, options []string, url string) {
         		fmt.Println(message, outputStr)
                 }
         }
+	if rateBoolean {
+		//fmt.Println(rateLimit)
+		rateLimit_mod := 1.0 / float64(rateLimit) * 1000.0
+		time.Sleep(time.Duration(rateLimit_mod) * time.Millisecond)
+	}
         defer wg.Done()
 
 }
@@ -145,7 +171,6 @@ func byp4xx(options []string, url string) {
 
 	fmt.Println("\033[31m===== "+url+" =====\033[0m")
 	fmt.Println("\033[32m==VERB TAMPERING==\033[0m")	
-	var sem = make(chan int, maxThreads)
 	//VERB TAMPERING
 	file, _ := os.Open("templates/verbs.txt")
 	defer file.Close()
