@@ -14,12 +14,12 @@ import (
 )
 
 //Global vars 
-var maxThreads int = 5
+var maxThreads int = 1
 var wg sync.WaitGroup
 var queue int = 0
 var verbose = false
-var rateLimit = 1
-var rateBoolean = false
+var rateLimit = 5
+var rateBoolean = true
 var sem = make(chan int, maxThreads)
 
 func banner() {
@@ -61,6 +61,20 @@ func main() {
 
 	options := os.Args[1 : len(os.Args)-1]
 	
+	//check for rate limit
+	for i, option := range options {
+		if option == "--rate" {
+			if i+1 < len(options) {
+				rate, _ := strconv.Atoi(options[i+1])
+				rateLimit = rate
+				maxThreads = 1
+				sem = make(chan int, maxThreads)
+				options = append(options[:i], options[i+2:]...)
+			}
+			
+		} 
+	}
+	
 	// check for the -t or --thread argument to set the max number of threads
 	for i, option := range options {
 		if option == "-t" || option == "--thread" {
@@ -70,21 +84,7 @@ func main() {
 				sem = make(chan int, maxThreads)
 				//Delete -t/--thread and the value from options
 				options = append(options[:i], options[i+2:]...)
-			}
-			
-		} 
-	}
-	
-	//check for rate limit
-	for i, option := range options {
-		if option == "--rate" {
-			if i+1 < len(options) {
-				rate, _ := strconv.Atoi(options[i+1])
-				rateLimit = rate
-				maxThreads = 1
-				sem = make(chan int, maxThreads)
-				rateBoolean = true
-				options = append(options[:i], options[i+2:]...)
+				rateBoolean = false
 			}
 			
 		} 
