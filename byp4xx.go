@@ -52,6 +52,7 @@ func main() {
 		fmt.Println("Built-in options:")
 		fmt.Println("  --all Verbose mode")
 		fmt.Println("  -t or --thread Set the maximum threads")
+		fmt.Println("  --rate Set the maximum reqs/sec. Only one thread enforced, for low rate limits.)
 		os.Exit(0)
 	}
 
