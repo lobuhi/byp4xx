@@ -24,6 +24,7 @@ Some cURL options you may use as example:
  Built-in options:
   --all Verbose mode
   -t or --thread Set the maximum threads
+  --rate Set the maximum reqs/sec. Only one thread enforced, for low rate limits.
 ```
 **Example:**
 ```
