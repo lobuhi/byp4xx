@@ -9,11 +9,6 @@
 ```
 40X bypasser in Go. Methods from #bugbountytips, headers, verb tampering, user agents and more.
 
-**Installation:** 
-```
-go install github.com/lobuhi/byp4xx@latest
-```
-
 **Usage:** 
 ```
 byp4xx <cURL or byp4xx options> <URL or file>
