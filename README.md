@@ -22,8 +22,18 @@ Some cURL options you may use as example:
   -...
   
  Built-in options:
-  --all Verbose mode
-  -t or --thread Set the maximum threads
+  --all Verbose mode (by default only 2xx and 3xx codes will be prompted)
+  -t or --thread Set the maximum threads. Rate limit disabled when threads are enabled.
+  --rate Set the maximum reqs/sec. Only one thread enforced, for low rate limits. (5 reqs/sec by default)
+  -xV Exclude verb tampering
+  -xH Exclude headers
+  -xUA Exclude User-Agents
+  -xX Exclude extensions
+  -xD Exclude default creds
+  -xS Exclude CaSe SeNsiTiVe
+  -xM Exclude middle paths
+  -xE Exclude end paths
+  -xB Exclude #bugbountytips
 ```
 **Example:**
 ```
