@@ -35,10 +35,32 @@ Some cURL options you may use as example:
   -xE Exclude end paths
   -xB Exclude #bugbountytips
 ```
-**Example:**
+**Examples:**
+Regular usage:
 ```
 byp4xx http://localhost/test
 ```
+
+Avoid default creds if the response is not 401:
+```
+byp4xx -xD http://localhost/test
+```
+
+Avoid end paths and extensions if the url ends with /:
+```
+byp4xx -xE -xX http://localhost/test
+```
+
+Set 2 seconds timeout, follow redirections and use proxy
+```
+byp4xx -m 2 -L -x 127.0.0.1:8080 http://localhost/test
+```
+
+Custom headers, you should escape double quotes:
+```
+byp4xx -H \"Authorization: Bearer <JWT>\" http://localhost/test
+```
+
 **Features:**
 - Multiple HTTP verbs/methods
 - Multiple methods mentioned in #bugbountytips
