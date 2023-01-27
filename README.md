@@ -36,6 +36,7 @@ Some cURL options you may use as example:
   -xB Exclude #bugbountytips
 ```
 **Examples:**
+
 Regular usage:
 ```
 byp4xx http://localhost/test
