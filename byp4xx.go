@@ -55,6 +55,15 @@ func main() {
 		fmt.Println("  --all Verbose mode")
 		fmt.Println("  -t or --thread Set the maximum threads")
 		fmt.Println("  --rate Set the maximum reqs/sec. Only one thread enforced, for low rate limits.")
+		fmt.Println("  -xV Exclude verb tampering")
+		fmt.Println("  -xH Exclude headers")
+		fmt.Println("  -xUA Exclude User-Agents")
+		fmt.Println("  -xX Exclude extensions")
+		fmt.Println("  -xD Exclude default creds")
+		fmt.Println("  -xS Exclude CaSe SeNsiTiVe")
+		fmt.Println("  -xM Exclude middle paths")
+		fmt.Println("  -xE Exclude end paths")
+		fmt.Println("  -xB Exclude #bugbountytips")
 		os.Exit(0)
 	}
 
