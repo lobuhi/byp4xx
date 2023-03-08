@@ -80,6 +80,5 @@ rebind
 unbind
 unlink
 updateredirectref
-DELETE
 POUET
 TRACK
