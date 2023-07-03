@@ -20,6 +20,7 @@ var queue int = 0
 var verbose = false
 var rateLimit = 5
 var rateBoolean = true
+var templateDir = "templates/"
 var sem = make(chan int, maxThreads)
 var lastPart, previousParts string
 var xV,xH,xUA,xX,xD,xS,xM,xE,xB = false, false, false, false, false, false, false, false, false
@@ -55,6 +56,7 @@ func main() {
 		fmt.Println("  --all Verbose mode")
 		fmt.Println("  -t or --thread Set the maximum threads")
 		fmt.Println("  --rate Set the maximum reqs/sec. Only one thread enforced, for low rate limits.")
+		fmt.Println("  --template-dir Specify path to template directory.")
 		fmt.Println("  -xV Exclude verb tampering")
 		fmt.Println("  -xH Exclude headers")
 		fmt.Println("  -xUA Exclude User-Agents")
@@ -85,7 +87,18 @@ func main() {
 			
 		} 
 	}
-	
+
+	//check for template directory
+	for i, option := range options {
+		if option == "--template-dir" {
+			if i+1 < len(options) {
+				templateDir = options[i+1]
+				options = append(options[:i], options[i+2:]...)
+			}
+
+		}
+	}
+
 	// check for the -t or --thread argument to set the max number of threads
 	for i, option := range options {
 		if option == "-t" || option == "--thread" {
@@ -266,7 +279,7 @@ func byp4xx(options []string, url string) {
 func verbTampering(options []string, url string) {
 	fmt.Println("\033[32m==VERB TAMPERING==\033[0m")	
 	//VERB TAMPERING
-	file, _ := os.Open("templates/verbs.txt")
+	file, _ := os.Open(templateDir + "verbs.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -285,11 +298,11 @@ func verbTampering(options []string, url string) {
 func headers(options []string, url string) {
 	//HEADERS + IP
 	fmt.Println("\033[32m==HEADERS==\033[0m")
-	file, _ := os.Open("templates/headers.txt")
+	file, _ := os.Open(templateDir + "headers.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		file2, _ := os.Open("templates/ip.txt")
+		file2, _ := os.Open(templateDir + "ip.txt")
 		defer file2.Close()
 		scanner2 := bufio.NewScanner(file2)
 		for scanner2.Scan() {
@@ -311,7 +324,7 @@ func headers(options []string, url string) {
 func userAgent(options []string, url string) {
 	//USER AGENT
 	fmt.Println("\033[32m==USER AGENTS==\033[0m")
-	file, _ := os.Open("templates/UserAgents.txt")
+	file, _ := os.Open(templateDir + "UserAgents.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -331,7 +344,7 @@ func userAgent(options []string, url string) {
 func extensions(options []string, url string) {
 	//EXTENSIONS
 	fmt.Println("\033[32m==EXTENSIONS==\033[0m")
-	file, _ := os.Open("templates/extensions.txt")
+	file, _ := os.Open(templateDir + "extensions.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -350,7 +363,7 @@ func extensions(options []string, url string) {
 func defaultCreds(options []string, url string) {
 	//DEFAULT CREDS
 	fmt.Println("\033[32m==DEFAULT CREDS==\033[0m")
-	file, _ := os.Open("templates/defaultcreds.txt")
+	file, _ := os.Open(templateDir + "defaultcreds.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -400,7 +413,7 @@ func caseSensitive(options []string, url string) {
 func midPaths(options []string, url string) {
 	//MID PATHS
 	fmt.Println("\033[32m==MID PATHS==\033[0m")
-	file, _ := os.Open("templates/midpaths.txt")
+	file, _ := os.Open(templateDir + "midpaths.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -420,7 +433,7 @@ func midPaths(options []string, url string) {
 func endPaths(options []string, url string) {
 	//END PATHS
 	fmt.Println("\033[32m==END PATHS==\033[0m")
-	file, _ := os.Open("templates/endpaths.txt")
+	file, _ := os.Open(templateDir + "endpaths.txt")
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
