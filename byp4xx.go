@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"regexp"
 	"os/exec"
@@ -11,6 +12,15 @@ import (
 	"sync"
 	"time"
 	b64 "encoding/base64"
+)
+
+const (
+	maxConcurrentRequests = 10
+)
+
+var (
+	verbose bool
+	wg      sync.WaitGroup
 )
 
 //Global vars 
